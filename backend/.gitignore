@@ -6,3 +6,5 @@ bin/
 obj/
 packages/
 *secret.json
+converted/
+origin-files/
