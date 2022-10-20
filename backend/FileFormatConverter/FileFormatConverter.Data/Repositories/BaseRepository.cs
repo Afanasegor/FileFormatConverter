@@ -20,7 +20,7 @@ namespace FileFormatConverter.Data.Repositories
 
         public async virtual Task<IList<T>> GetAllAsync()
         {
-            var result = await _context.Set<T>().Select(a => a).ToListAsync();
+            var result = await _context.Set<T>().Select(a => a).OrderByDescending(x => x.Created).ToListAsync();
             return result;
         }
 

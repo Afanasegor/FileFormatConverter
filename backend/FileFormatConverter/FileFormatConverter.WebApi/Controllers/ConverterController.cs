@@ -61,23 +61,21 @@ namespace FileFormatConverter.WebApi.Controllers
         [HttpPost("convert")]
         public async Task<IActionResult> Convert(IFormFile file, ConverterType converterType)
         {
-            if (file.Length > 0)
-            {
-                byte[] fileInByteArray;
-
-                using (var ms = new MemoryStream())
-                {
-                    file.CopyTo(ms);
-                    fileInByteArray = ms.ToArray();
-                }
-
-                var batchId = await _mainService.StartConverting(fileInByteArray, converterType);
-                return Ok(batchId);
-            }
-            else
+            if (file == null || file.Length == 0)
             {
                 return BadRequest("There is no file added");
             }
+
+            byte[] fileInByteArray;
+
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                fileInByteArray = ms.ToArray();
+            }
+
+            var batchId = await _mainService.StartConverting(fileInByteArray, converterType);
+            return Ok(batchId);
         }
 
         [HttpGet("test-fabric")]
