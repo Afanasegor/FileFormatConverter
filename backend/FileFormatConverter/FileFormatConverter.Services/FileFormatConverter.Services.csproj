@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" Version="1.7.31" />
+    <PackageReference Include="PuppeteerSharp" Version="7.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileFormatConverter.Core\FileFormatConverter.Core.csproj" />
+    <ProjectReference Include="..\FileFormatConverter.Data\FileFormatConverter.Data.csproj" />
+    <ProjectReference Include="..\FileFormatConverter.Services.Interfaces\FileFormatConverter.Services.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
