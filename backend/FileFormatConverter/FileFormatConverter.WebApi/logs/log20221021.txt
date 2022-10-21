@@ -116,3 +116,27 @@ System.NullReferenceException: Object reference not set to an instance of an obj
    at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
 2022-10-21 23:21:20.101 +03:00 [INF] Request finished in 33638.9369ms 500 text/plain
 2022-10-21 23:21:56.317 +03:00 [INF] Application is shutting down...
+2022-10-21 23:59:49.638 +03:00 [INF] Starting web host
+2022-10-21 23:59:51.886 +03:00 [INF] Start installing Hangfire SQL objects...
+2022-10-21 23:59:52.166 +03:00 [INF] Hangfire SQL objects installed.
+2022-10-21 23:59:52.200 +03:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: localhost\SQLEXPRESS@FileFormatConvertHangfireDb'
+2022-10-21 23:59:52.202 +03:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:15.
+2022-10-21 23:59:52.205 +03:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-10-21 23:59:52.547 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-21 23:59:52.550 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-21 23:59:52.551 +03:00 [INF] Hosting environment: Development
+2022-10-21 23:59:52.553 +03:00 [INF] Content root path: D:\Proga\FileFormatConverter\backend\FileFormatConverter\FileFormatConverter.WebApi
+2022-10-21 23:59:52.624 +03:00 [INF] Server laptop-04jlnhi0:7356:3be3651e successfully announced in 391,8434 ms
+2022-10-21 23:59:52.634 +03:00 [INF] Server laptop-04jlnhi0:7356:3be3651e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-10-21 23:59:52.684 +03:00 [INF] 1 servers were removed due to timeout
+2022-10-21 23:59:52.826 +03:00 [INF] Server laptop-04jlnhi0:7356:3be3651e all the dispatchers started
+2022-10-21 23:59:53.486 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/weatherforecast  
+2022-10-21 23:59:53.555 +03:00 [INF] Request finished in 70.0623ms 404 
+2022-10-21 23:59:57.079 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/index.html  
+2022-10-21 23:59:57.136 +03:00 [INF] Request finished in 57.2893ms 200 text/html;charset=utf-8
+2022-10-21 23:59:57.486 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/swagger/v1/swagger.json  
+2022-10-21 23:59:57.642 +03:00 [INF] Request finished in 155.9782ms 200 application/json;charset=utf-8

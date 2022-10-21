@@ -9,7 +9,7 @@ namespace FileFormatConverter.Services.Utils.Converters
             var validFileFormat = converterType.ConvertToOriginalFileFormat();
             var validFileFormatString = validFileFormat.ConvertToString();
 
-            if (!string.IsNullOrEmpty(validFileFormatString))
+            if (string.IsNullOrEmpty(validFileFormatString))
             {
                 return false;
             }
