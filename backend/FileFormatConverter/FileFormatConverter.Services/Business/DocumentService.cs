@@ -4,6 +4,7 @@ using FileFormatConverter.Services.Interfaces.Business.Interfaces;
 using FileFormatConverter.Services.Interfaces.Business.Models.Enums;
 using FileFormatConverter.Services.Interfaces.Business.Models.Output;
 using FileFormatConverter.Services.Utils.Converters;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace FileFormatConverter.Services.Business
     public class DocumentService : IFileService
     {
         private readonly IBaseRepository<Document> _documentRepository;
+        private readonly ILogger<DocumentService> _logger;
 
-        public DocumentService(IBaseRepository<Document> documentRepository)
+        public DocumentService(IBaseRepository<Document> documentRepository, ILogger<DocumentService> logger)
         {
             _documentRepository = documentRepository;
+            _logger = logger;
         }
 
         public async Task<OutputFileInfo> GetById(Guid id)
@@ -36,16 +39,23 @@ namespace FileFormatConverter.Services.Business
             return outputResult;
         }
 
-        [Obsolete]
         public async Task<OutputFileInfo> CreateRecordOfFile(string fullPath, FileFormat fileFormat)
         {
             var result = new OutputFileInfo();
 
             if (string.IsNullOrWhiteSpace(fullPath))
-                throw new ArgumentException("Problem with one of parameters (fullPath)");
-
+            {
+                var errorMessage = "Problem with one of parameters (fullPath)";
+                _logger.LogError(errorMessage);
+                throw new ArgumentException(errorMessage);
+            }
+            
             if (!File.Exists(fullPath))
-                throw new ArgumentException("File doesn't exist");
+            {
+                var errorMessage = "File doesn't exist";
+                _logger.LogError(errorMessage);
+                throw new ArgumentException(errorMessage);
+            }
 
             var fileName = fullPath.Split(@"\").LastOrDefault();
 
@@ -65,45 +75,6 @@ namespace FileFormatConverter.Services.Business
 
             return result;
         }
-
-
-        /// <param name="path">Path - where to save</param>
-        /// <returns></returns>
-        //public async Task<OutputFileInfo> CreateFile(byte[] blob, FileFormat fileFormat)
-        //{
-        //    var result = new OutputFileInfo();
-
-        //    try
-        //    {
-        //        //var filePath = await SaveFileAsync(blob, fileFormat.ConvertToString());
-        //        if (blob == null || blob.Length == 0)
-        //            throw new ArgumentException("Input file is empty");
-
-        //        var fileHash = Sha1HashFile(blob);
-        //        var fileLength = blob.Length;
-        //        var document = new Document()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            File = blob,
-        //            FileHash = fileHash,
-        //            FileLength = fileLength,
-        //            FileFormat = fileFormat.ConvertToCore(),
-        //        };
-
-        //        var createdFile = await _documentRepository.CreateAsync(document);
-        //        await _documentRepository.SaveAsync();
-
-        //        result.FileId = createdFile.Id;
-        //        result.FileBlob = document.File;
-
-        //        return result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // TODO: add logs
-        //        throw;
-        //    }
-        //}
 
         private static string Sha1HashFile(byte[] file)
         {
@@ -135,26 +106,27 @@ namespace FileFormatConverter.Services.Business
 
                 // Check for dots in fileNameWithMime (using regex)
                 var normalizedFileName = Regex.Replace(fileNameWithMime, @"/.+", ".");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
             
                 var fullPath = Path.Combine(path, normalizedFileName);
 
                 await File.WriteAllBytesAsync(fullPath, blob);
-                //using (var writer = new BinaryWriter(File.OpenWrite(fullPath)))
-                //{
-                //    writer.Write(blob);
-                //}
 
                 result = fullPath;
                 return result;
             }
-            catch (ArgumentException)
+            catch (ArgumentException ex)
             {
-                // TODO: add logging
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: add logging
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw;
             }
         }
@@ -189,9 +161,10 @@ namespace FileFormatConverter.Services.Business
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: add logs
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 throw;
             }
         }

@@ -6,4 +6,8 @@ export default {
         let apiMethod = '/get-all';
         return await Client.get(`${resource}${apiMethod}`);
     },
+    async deleteAllBatches() {
+        let apiMethod = '/delete-all';
+        return await Client.delete(`${resource}${apiMethod}`);
+    }
 };

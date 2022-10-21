@@ -1,0 +1,346 @@
+2022-10-22 00:00:22.084 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/Converter/convert?converterType=10 multipart/form-data; boundary=----WebKitFormBoundaryCgZdkqk2VAmJMGKz 79015
+2022-10-22 00:00:22.110 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:00:22.127 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:00:22.212 +03:00 [INF] Route matched with {action = "Convert", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Convert(Microsoft.AspNetCore.Http.IFormFile, FileFormatConverter.Services.Interfaces.Business.Models.Enums.ConverterType) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:00:22.740 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:00:22.832 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:00:22.874 +03:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:00:22.955 +03:00 [ERR] fileName (Wikipedia.html) doesn't consider to converterType HTML_TO_PDF
+2022-10-22 00:00:23.424 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi) in 1162.4513ms
+2022-10-22 00:00:23.474 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:00:23.772 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: File format isn't considering converter type (Parameter 'fileName')
+   at FileFormatConverter.Services.Business.MainService.StartConverting(Byte[] file, ConverterType converterType, String fileName) in D:\Proga\FileFormatConverter\backend\FileFormatConverter\FileFormatConverter.Services\Business\MainService.cs:line 38
+   at FileFormatConverter.WebApi.Controllers.ConverterController.Convert(IFormFile file, ConverterType converterType) in D:\Proga\FileFormatConverter\backend\FileFormatConverter\FileFormatConverter.WebApi\Controllers\ConverterController.cs:line 85
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.Extensions.MapMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-22 00:00:23.932 +03:00 [INF] Request finished in 1848.0767ms 500 text/plain
+2022-10-22 00:01:12.077 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/Converter/convert?converterType=10 multipart/form-data; boundary=----WebKitFormBoundarygmQ2VqR1Cx0chrIt 79015
+2022-10-22 00:01:12.086 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:01:12.092 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:01:12.096 +03:00 [INF] Route matched with {action = "Convert", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Convert(Microsoft.AspNetCore.Http.IFormFile, FileFormatConverter.Services.Interfaces.Business.Models.Enums.ConverterType) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:01:12.153 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:01:12.170 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:01:12.195 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:01:44.357 +03:00 [ERR] fileName (Wikipedia.html) doesn't consider to converterType HTML_TO_PDF
+2022-10-22 00:01:44.736 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi) in 32633.847ms
+2022-10-22 00:01:44.787 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:01:45.080 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: File format isn't considering converter type (Parameter 'fileName')
+   at FileFormatConverter.Services.Business.MainService.StartConverting(Byte[] file, ConverterType converterType, String fileName)
+   at FileFormatConverter.WebApi.Controllers.ConverterController.Convert(IFormFile file, ConverterType converterType) in D:\Proga\FileFormatConverter\backend\FileFormatConverter\FileFormatConverter.WebApi\Controllers\ConverterController.cs:line 85
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Builder.Extensions.MapMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-22 00:01:45.112 +03:00 [INF] Request finished in 33035.2839ms 500 text/plain
+2022-10-22 00:01:47.024 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/Converter/convert?converterType=10 multipart/form-data; boundary=----WebKitFormBoundarynAe5fyaHdmyJO9VX 79015
+2022-10-22 00:01:47.035 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:01:47.038 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:01:47.042 +03:00 [INF] Route matched with {action = "Convert", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Convert(Microsoft.AspNetCore.Http.IFormFile, FileFormatConverter.Services.Interfaces.Business.Models.Enums.ConverterType) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:01:47.057 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:01:47.067 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:01:47.093 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:01:57.828 +03:00 [INF] Executed DbCommand (83ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([id], [created], [file_format], [file_hash], [file_name], [file_path], [modified])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2022-10-22 00:01:57.941 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (DbType = DateTime2), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Guid), @p5='?' (Size = 4000), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Batches] ([id], [converter_type], [created], [modified], [origin_file_id], [origin_file_name], [process_status], [target_file_id])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2022-10-22 00:01:58.100 +03:00 [INF] Executing ObjectResult, writing value of type 'System.Guid'.
+2022-10-22 00:01:58.123 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi) in 11069.9459ms
+2022-10-22 00:01:58.132 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.Convert (FileFormatConverter.WebApi)'
+2022-10-22 00:01:58.137 +03:00 [INF] Request finished in 11113.1937ms 200 application/json; charset=utf-8
+2022-10-22 00:01:58.303 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:01:58.309 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:01:58.317 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:01:58.860 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:01:58.893 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:01:58.913 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p7='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Batches] SET [converter_type] = @p0, [created] = @p1, [modified] = @p2, [origin_file_id] = @p3, [origin_file_name] = @p4, [process_status] = @p5, [target_file_id] = @p6
+WHERE [id] = @p7;
+SELECT @@ROWCOUNT;
+2022-10-22 00:01:58.972 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[id], [d].[created], [d].[file_format], [d].[file_hash], [d].[file_name], [d].[file_path], [d].[modified]
+FROM [Documents] AS [d]
+WHERE [d].[id] = @__id_0
+2022-10-22 00:02:10.142 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Converter/check-status?id=77aef41a-7282-4a60-a87d-89a7a8e0cd92  
+2022-10-22 00:02:10.147 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:10.169 +03:00 [INF] Route matched with {action = "GetStatus", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatus(System.Guid) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:02:10.179 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:02:10.186 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:02:10.196 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:02:10.216 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:10.228 +03:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2022-10-22 00:02:10.231 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi) in 54.4236ms
+2022-10-22 00:02:10.236 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:10.239 +03:00 [INF] Request finished in 98.2396ms 200 text/plain; charset=utf-8
+2022-10-22 00:02:14.228 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Converter/check-status?id=77aef41a-7282-4a60-a87d-89a7a8e0cd92  
+2022-10-22 00:02:14.231 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:14.234 +03:00 [INF] Route matched with {action = "GetStatus", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatus(System.Guid) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:02:14.241 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:02:14.248 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:02:14.273 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:02:14.287 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:14.300 +03:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2022-10-22 00:02:14.305 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi) in 65.6962ms
+2022-10-22 00:02:14.312 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:14.316 +03:00 [INF] Request finished in 88.6284ms 200 text/plain; charset=utf-8
+2022-10-22 00:02:21.536 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/hangfire  
+2022-10-22 00:02:21.836 +03:00 [INF] Request finished in 300.5981ms 200 text/html
+2022-10-22 00:02:21.877 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/hangfire/css17310  
+2022-10-22 00:02:21.886 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/hangfire/js17310  
+2022-10-22 00:02:21.892 +03:00 [INF] Request finished in 14.8132ms 200 text/css
+2022-10-22 00:02:21.917 +03:00 [INF] Request finished in 30.6076ms 200 application/javascript
+2022-10-22 00:02:21.959 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/hangfire/fonts/glyphicons-halflings-regular/woff2  
+2022-10-22 00:02:21.961 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:21.963 +03:00 [INF] Request finished in 4.3996ms 200 font/woff2
+2022-10-22 00:02:23.944 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Documents] ([id], [created], [file_format], [file_hash], [file_name], [file_path], [modified])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2022-10-22 00:02:23.954 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:23.963 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p7='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Batches] SET [converter_type] = @p0, [created] = @p1, [modified] = @p2, [origin_file_id] = @p3, [origin_file_name] = @p4, [process_status] = @p5, [target_file_id] = @p6
+WHERE [id] = @p7;
+SELECT @@ROWCOUNT;
+2022-10-22 00:02:23.969 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:23.980 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p7='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = DateTime2), @p3='?' (DbType = Guid), @p4='?' (Size = 4000), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+UPDATE [Batches] SET [converter_type] = @p0, [created] = @p1, [modified] = @p2, [origin_file_id] = @p3, [origin_file_name] = @p4, [process_status] = @p5, [target_file_id] = @p6
+WHERE [id] = @p7;
+SELECT @@ROWCOUNT;
+2022-10-22 00:02:24.061 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:24.063 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:24.087 +03:00 [INF] Request finished in 26.6243ms 200 application/json
+2022-10-22 00:02:25.389 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Converter/check-status?id=77aef41a-7282-4a60-a87d-89a7a8e0cd92  
+2022-10-22 00:02:25.393 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:25.397 +03:00 [INF] Route matched with {action = "GetStatus", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetStatus(System.Guid) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:02:25.406 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:02:25.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:02:25.438 +03:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:02:25.452 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:25.463 +03:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2022-10-22 00:02:25.466 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi) in 61.6513ms
+2022-10-22 00:02:25.470 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.GetStatus (FileFormatConverter.WebApi)'
+2022-10-22 00:02:25.473 +03:00 [INF] Request finished in 83.523ms 200 text/plain; charset=utf-8
+2022-10-22 00:02:26.969 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:26.974 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:26.982 +03:00 [INF] Request finished in 13.0471ms 200 application/json
+2022-10-22 00:02:29.969 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:29.972 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:29.980 +03:00 [INF] Request finished in 11.4594ms 200 application/json
+2022-10-22 00:02:32.969 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:32.972 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:32.980 +03:00 [INF] Request finished in 10.4766ms 200 application/json
+2022-10-22 00:02:35.972 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:35.976 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:35.981 +03:00 [INF] Request finished in 9.0803ms 200 application/json
+2022-10-22 00:02:36.153 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/Converter/download-converted-file?id=77aef41a-7282-4a60-a87d-89a7a8e0cd92  
+2022-10-22 00:02:36.157 +03:00 [INF] Executing endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.DownloadConvertedFile (FileFormatConverter.WebApi)'
+2022-10-22 00:02:36.167 +03:00 [INF] Route matched with {action = "DownloadConvertedFile", controller = "Converter"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DownloadConvertedFile(System.Guid) on controller FileFormatConverter.WebApi.Controllers.ConverterController (FileFormatConverter.WebApi).
+2022-10-22 00:02:36.176 +03:00 [INF] Entity Framework Core 5.0.17 initialized 'ApplicationContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
+2022-10-22 00:02:36.182 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-10-22 00:02:36.188 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2022-10-22 00:02:36.204 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[id], [b].[converter_type], [b].[created], [b].[modified], [b].[origin_file_id], [b].[origin_file_name], [b].[process_status], [b].[target_file_id]
+FROM [Batches] AS [b]
+WHERE [b].[id] = @__id_0
+2022-10-22 00:02:36.218 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [d].[id], [d].[created], [d].[file_format], [d].[file_hash], [d].[file_name], [d].[file_path], [d].[modified]
+FROM [Documents] AS [d]
+WHERE [d].[id] = @__id_0
+2022-10-22 00:02:36.236 +03:00 [INF] Executing Microsoft.AspNetCore.Mvc.FileContentResult, sending file with download name 'html_to_pdf_22102022_0222755.pdf' ...
+2022-10-22 00:02:36.253 +03:00 [INF] Executed action FileFormatConverter.WebApi.Controllers.ConverterController.DownloadConvertedFile (FileFormatConverter.WebApi) in 81.8562ms
+2022-10-22 00:02:36.258 +03:00 [INF] Executed endpoint 'FileFormatConverter.WebApi.Controllers.ConverterController.DownloadConvertedFile (FileFormatConverter.WebApi)'
+2022-10-22 00:02:36.262 +03:00 [INF] Request finished in 109.1173ms 200 application/force-download
+2022-10-22 00:02:38.976 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:38.979 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:38.986 +03:00 [INF] Request finished in 10.2196ms 200 application/json
+2022-10-22 00:02:41.967 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:41.970 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:41.976 +03:00 [INF] Request finished in 9.616ms 200 application/json
+2022-10-22 00:02:44.969 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/hangfire/stats application/x-www-form-urlencoded; charset=UTF-8 228
+2022-10-22 00:02:44.973 +03:00 [INF] CORS policy execution successful.
+2022-10-22 00:02:44.980 +03:00 [INF] Request finished in 10.6411ms 200 application/json

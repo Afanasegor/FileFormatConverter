@@ -3,7 +3,7 @@
     HTML to PDF view
     <base-converter @onConvertStart="convertFileHtmlToPdf" />
     <block-divider class="block-divider" />
-    <batch-list :batches="batchList" @onDownloadFile="downloadFile"/>
+    <batch-list :batches="batches" @onDownloadFile="downloadFile"/>
   </div>
 </template>
 
@@ -22,14 +22,14 @@ import BaseConverter from "@/components/Converters/BaseConverter.vue"
 import BatchList from "@/components/Batches/BatchList.vue"
 
 export default {
-  name: 'HtmlToPdfView',
+  name: 'html-to-pdf-view',
   components: {
     BaseConverter,
     BatchList,
   },
   data() {
     return {
-      batchList: [],
+      batches: [],
       periodicTimerId: ''
     }
   },
@@ -54,14 +54,14 @@ export default {
           const element = batches[index];
           var batch = {
             id: element.id,
-            name: 'File ' + index,
+            name: element.originFileName,
             converterType: element.converterType,
             statusNumber: element.processStatus,
             statusStr:  BatchStatuses[element.processStatus],
           };
           allBatches.push(batch);
         }
-        this.batchList = allBatches;
+        this.batches = allBatches;
       })
       .catch((err) => console.log(err));
     },

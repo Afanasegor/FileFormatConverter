@@ -1,5 +1,4 @@
 import Client from '@/api-clients/main-api-client.js';
-import axios from 'axios';
 const resource = '/converter';
 
 export default {

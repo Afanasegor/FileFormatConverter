@@ -3,7 +3,7 @@
         <h3 class="list-of-batches-header">Список процессов / файлов</h3>
         <div class="list-of-batches" v-if="batches.length > 0">
             <div v-for="item in batches" v-bind:key="item.id">
-                <batch-item class="batch-item" :item="item" @onDownload="downloadFile" />
+                <batch-item class="batch-item-parameters" :item="item" @onDownload="downloadFileById" />
             </div>
         </div>
         <div v-else>
@@ -16,6 +16,7 @@
 import BatchItem from './BatchItem.vue'
 
 export default {
+    name: "batch-list",
     components: {
         BatchItem
     },
@@ -23,8 +24,7 @@ export default {
         batches: [Array]
     },
     methods: {
-        downloadFile(id){
-            console.log("batches list: " + id)
+        downloadFileById(id){
             this.$emit("onDownloadFile", id);
         }
     }
@@ -43,7 +43,7 @@ export default {
     justify-content: center;
 }
 
-.batch-item {
+.batch-item-parameters {
     border-radius: 10px;
     margin-top: 15px;
     width: 300px;

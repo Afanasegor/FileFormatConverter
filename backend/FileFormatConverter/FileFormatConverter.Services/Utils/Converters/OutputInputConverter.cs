@@ -6,7 +6,8 @@ namespace FileFormatConverter.Services.Utils.Converters
 {
     public static class OutputInputConverter
     {
-        public static InputFileInfo ConvertToInputFileInfo(this OutputFileInfo outputFileInfo, FileFormat fileFormat, ConverterType converterType)
+        public static InputFileInfo ConvertToInputFileInfo(this OutputFileInfo outputFileInfo, FileFormat fileFormat, 
+            ConverterType converterType, string originalFileName = null)
         {
             var result = new InputFileInfo()
             {
@@ -14,7 +15,8 @@ namespace FileFormatConverter.Services.Utils.Converters
                 FilePath = outputFileInfo.FilePath,
                 FileHash = outputFileInfo.FileHash,
                 FileFormat = fileFormat,
-                ConverterType = converterType
+                ConverterType = converterType,
+                FileName = originalFileName
             };
             return result;
         }

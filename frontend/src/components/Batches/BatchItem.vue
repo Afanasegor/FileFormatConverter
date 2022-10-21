@@ -1,14 +1,17 @@
 <template>
     <div class="element-with-border" :class="getStatusClass">
-        <div>{{ item.name }}</div>
+        <div class="origin-file-name">{{ item.name }}</div>
         <div class="status-number">{{ item.statusStr }}</div>
         <download-button class="batch-btn" :isAvailable="isDownloadAvailable" @onDownload="downloadFile">Скачать файл</download-button>
     </div>
 </template>
 
 <script>
+import BatchStatusesEnum from "@/enums/batch-statuses.js";
+const BatchStatuses = BatchStatusesEnum.Statuses;
 
 export default {
+    name: "batch-item",
     props: {
         item: {
             require: true
@@ -24,21 +27,20 @@ export default {
     },
     methods: {
         downloadFile() {
-            console.log('button' + this.item.id)
             this.$emit('onDownload', this.item.id);
         }
     },
     computed: {
         getStatusClass() {
             return {
-                'batch-btn-ready': this.item.statusNumber === 3,
-                'batch-btn-error': this.item.statusNumber === 2,
-                'batch-btn-in-process': this.item.statusNumber === 1,
-                'batch-btn-created': this.item.statusNumber === 0
+                'batch-btn-ready': this.item.statusNumber === BatchStatuses.Completed,
+                'batch-btn-error': this.item.statusNumber === BatchStatuses.Error,
+                'batch-btn-in-process': this.item.statusNumber === BatchStatuses.InProcessing,
+                'batch-btn-created': this.item.statusNumber === BatchStatuses.Created
             }
         },
         isDownloadAvailable(){
-            return this.item.statusNumber !== 3;
+            return this.item.statusNumber !== BatchStatuses.Completed;
         }
     }
 }
@@ -50,6 +52,8 @@ export default {
     padding: 8px;
     display: flex;
     align-items: center;
+    justify-items: center;
+    min-width: 500px;
 }
 
 .batch-btn-created {
@@ -74,11 +78,18 @@ export default {
 
 .batch-btn {
     margin-left: auto;
-    align-self: flex-end;
+    align-self: center;
 }
 
 .status-number {
     margin-left: auto;
     margin-right: 20px;
+    align-self: center;
+}
+
+.origin-file-name {
+    justify-self: flex-start;
+    width: 200px;
+    align-self: center;
 }
 </style>

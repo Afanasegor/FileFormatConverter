@@ -1,8 +1,10 @@
 ﻿using FileFormatConverter.Core.Interfaces.Repositories;
 using FileFormatConverter.Core.Models;
 using FileFormatConverter.Core.Models.Enums;
+using FileFormatConverter.Services.Utils.Converters;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace FileFormatConverter.WebApi.Controllers
@@ -24,7 +26,8 @@ namespace FileFormatConverter.WebApi.Controllers
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _batchRepository.GetAllAsync();
+            var batches = await _batchRepository.GetAllAsync();
+            var result = batches.Select(x => CoreModelsConverter.ConvertToOutputModel(x)).ToList();
             return Ok(result);
         }
 
@@ -61,6 +64,23 @@ namespace FileFormatConverter.WebApi.Controllers
             }
 
             await _batchRepository.DeleteAsync(entity);
+            await _batchRepository.SaveAsync();
+            return Ok();
+        }
+
+        [HttpDelete("delete-all")]
+        public async Task<IActionResult> DeleteAllBatches()
+        {
+            var allBatches = await _batchRepository.GetAllAsync();
+            if (allBatches == null || !allBatches.Any())
+            {
+                return Ok("No batches in db");
+            }
+
+            foreach (var batch in allBatches)
+            {
+                await _batchRepository.DeleteAsync(batch);
+            }
             await _batchRepository.SaveAsync();
             return Ok();
         }

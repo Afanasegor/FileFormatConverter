@@ -18,17 +18,15 @@ namespace FileFormatConverter.Services.Business.Converters
         {
             var output = new OutputFileInfo();
 
-            //var content = System.Text.Encoding.Default.GetString(fileBlob);
             var content = await File.ReadAllTextAsync(originFilePath);
+
+            var browserFetcher = new BrowserFetcher();
+            await browserFetcher.DownloadAsync();
 
             var options = new LaunchOptions
             {
                 Headless = true,
-                ExecutablePath = @"C:\Program Files\Google\Chrome\Application\chrome.exe"
             };
-
-            //using var browserFetcher = new BrowserFetcher();
-            //await browserFetcher.DownloadAsync();
 
             var pdfOptions = new PdfOptions
             {

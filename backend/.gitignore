@@ -8,3 +8,4 @@ packages/
 *secret.json
 converted/
 origin-files/
+.local-chromium/

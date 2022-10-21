@@ -45,6 +45,7 @@ namespace FileFormatConverter.Services.Utils.Converters
             var result = new OutputBatchModel()
             {
                 Id = batch.Id,
+                OriginFileName = batch.OriginFileName,
                 OriginFileId = batch.OriginFileId,
                 TargetFileId = batch.TargetFileId,
                 ConverterType = batch.ConverterType.ConvertToServiceType(),
