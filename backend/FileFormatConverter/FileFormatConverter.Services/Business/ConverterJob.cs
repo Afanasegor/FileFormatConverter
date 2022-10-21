@@ -1,6 +1,7 @@
 ﻿using FileFormatConverter.Services.Interfaces.Business.Interfaces;
 using FileFormatConverter.Services.Interfaces.Business.Models.Enums;
 using FileFormatConverter.Services.Utils.Converters;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
@@ -11,12 +12,14 @@ namespace FileFormatConverter.Services.Business
         private readonly IFileService _fileService;
         private readonly IBatchService _batchService;
         private readonly IFileConverterFactory _fileConverterFactory;
+        private readonly ILogger<ConverterJob> _logger;
 
-        public ConverterJob(IFileService fileService, IBatchService batchService, IFileConverterFactory fileConverterFactory)
+        public ConverterJob(IFileService fileService, IBatchService batchService, IFileConverterFactory fileConverterFactory, ILogger<ConverterJob> logger)
         {
             _fileService = fileService;
             _batchService = batchService;
             _fileConverterFactory = fileConverterFactory;
+            _logger = logger;
         }
         public async Task ConvertByBatchIdAsync(Guid batchId)
         {
@@ -44,9 +47,10 @@ namespace FileFormatConverter.Services.Business
                 await _batchService.AddTargetFileInfoToBatch(batchToProcess.Id, inputTargetFileInfo);
                 await _batchService.ChangeStatus(batchToProcess.Id, ProcessStatus.Completed);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // TODO: Add logs
+                _logger.LogError(ex.Message);
+                _logger.LogError(ex.StackTrace);
                 await _batchService.ChangeStatus(batchToProcess.Id, ProcessStatus.Error);
             }
         }

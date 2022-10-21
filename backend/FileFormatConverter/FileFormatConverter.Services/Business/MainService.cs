@@ -3,6 +3,7 @@ using FileFormatConverter.Services.Interfaces.Business.Interfaces;
 using FileFormatConverter.Services.Interfaces.Business.Models.Enums;
 using FileFormatConverter.Services.Utils.Converters;
 using Hangfire;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,21 +18,25 @@ namespace FileFormatConverter.Services.Business
 
         private readonly IFileService _fileService;
         private readonly IBatchService _batchService;
+        private readonly ILogger<MainService> _logger;
 
-        public MainService(IFileService fileService, IBatchService batchService)
+        public MainService(IFileService fileService, IBatchService batchService, ILogger<MainService> logger)
         {
             _fileService = fileService;
             _batchService = batchService;
+            _logger = logger;
         }
 
         public async Task<Guid> StartConverting(byte[] file, ConverterType converterType, string fileName)
         {
             if (!ConverterTypeValidator.IsFileValid(fileName, converterType))
             {
+                _logger.LogError("fileName ({fileName}) doesn't consider to converterType {converterType}", fileName, converterType.ToString());
                 throw new ArgumentException("File format isn't considering converter type", "fileName");
             }
 
             var originFileName = GenerateUniqueName(ORIGIN_FILE_NAME);
+
             var originPath = Path.Combine(Directory.GetCurrentDirectory(), ORIGIN_PATH);
             var originFileFormat = converterType.ConvertToOriginalFileFormat();
 

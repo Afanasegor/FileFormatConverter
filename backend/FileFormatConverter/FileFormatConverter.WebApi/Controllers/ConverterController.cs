@@ -2,6 +2,7 @@
 using FileFormatConverter.Services.Interfaces.Business.Models.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Linq;
@@ -17,13 +18,16 @@ namespace FileFormatConverter.WebApi.Controllers
         private readonly IBatchService _batchService;
         private readonly IMainService _mainService;
         private readonly IFileService _fileService;
+        private readonly ILogger<ConverterController> _logger;
 
-        public ConverterController(IFileConverterFactory fileConverterFactory, IBatchService batchService, IMainService mainService, IFileService fileService)
+        public ConverterController(IFileConverterFactory fileConverterFactory, IBatchService batchService, IMainService mainService, IFileService fileService, 
+            ILogger<ConverterController> logger)
         {
             _fileConverterFactory = fileConverterFactory;
             _batchService = batchService;
             _mainService = mainService;
             _fileService = fileService;
+            _logger = logger;
         }
 
         [HttpGet("check-status")]
@@ -48,6 +52,7 @@ namespace FileFormatConverter.WebApi.Controllers
 
             if (file == null || string.IsNullOrWhiteSpace(file.FilePath))
             {
+                _logger.LogWarning("File doesn't exist yet, bathc id: {id}", id);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
 
@@ -63,6 +68,7 @@ namespace FileFormatConverter.WebApi.Controllers
         {
             if (file == null || file.Length == 0)
             {
+                _logger.LogWarning("Bad request, because file is empty");
                 return BadRequest("There is no file added");
             }
 
@@ -78,17 +84,6 @@ namespace FileFormatConverter.WebApi.Controllers
 
             var batchId = await _mainService.StartConverting(fileInByteArray, converterType, fileName);
             return Ok(batchId);
-        }
-
-        [HttpGet("test-fabric")]
-        public IActionResult TestFabric(ConverterType converterType = ConverterType.UNKNOWN)
-        {
-            var result = _fileConverterFactory.GetFileConverter(converterType);
-
-            if (result == null)
-                return BadRequest($"Converter type [{converterType}] doesn't exist");
-
-            return Ok(result.GetType().FullName);
         }
     }
 }
