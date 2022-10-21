@@ -17,24 +17,27 @@ namespace FileFormatConverter.Services.Business
 
         private readonly IFileService _fileService;
         private readonly IBatchService _batchService;
-        private readonly IFileConverterFactory _fileConverterFactory;
 
-        public MainService(IFileService fileService, IBatchService batchService, IFileConverterFactory fileConverterFactory)
+        public MainService(IFileService fileService, IBatchService batchService)
         {
             _fileService = fileService;
             _batchService = batchService;
-            _fileConverterFactory = fileConverterFactory;
         }
 
-        public async Task<Guid> StartConverting(byte[] file, ConverterType converterType)
+        public async Task<Guid> StartConverting(byte[] file, ConverterType converterType, string fileName)
         {
+            if (!ConverterTypeValidator.IsFileValid(fileName, converterType))
+            {
+                throw new ArgumentException("File format isn't considering converter type", "fileName");
+            }
+
             var originFileName = GenerateUniqueName(ORIGIN_FILE_NAME);
             var originPath = Path.Combine(Directory.GetCurrentDirectory(), ORIGIN_PATH);
             var originFileFormat = converterType.ConvertToOriginalFileFormat();
 
             var fileInfo = await _fileService.CreateFile(file, originPath, originFileName, originFileFormat);
 
-            var fileInput = fileInfo.ConvertToInputFileInfo(originFileFormat, converterType);
+            var fileInput = fileInfo.ConvertToInputFileInfo(originFileFormat, converterType, fileName);
 
             var batchModel = await _batchService.CreateBatch(fileInput);
 

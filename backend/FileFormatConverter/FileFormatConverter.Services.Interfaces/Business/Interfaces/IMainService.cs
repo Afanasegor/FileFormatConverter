@@ -6,6 +6,6 @@ namespace FileFormatConverter.Services.Interfaces.Business.Interfaces
 {
     public interface IMainService
     {
-        Task<Guid> StartConverting(byte[] file, ConverterType converterType);
+        Task<Guid> StartConverting(byte[] file, ConverterType converterType, string fileName);
     }
 }

@@ -135,14 +135,13 @@ namespace FileFormatConverter.Services.Business
 
                 // Check for dots in fileNameWithMime (using regex)
                 var normalizedFileName = Regex.Replace(fileNameWithMime, @"/.+", ".");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
             
                 var fullPath = Path.Combine(path, normalizedFileName);
 
                 await File.WriteAllBytesAsync(fullPath, blob);
-                //using (var writer = new BinaryWriter(File.OpenWrite(fullPath)))
-                //{
-                //    writer.Write(blob);
-                //}
 
                 result = fullPath;
                 return result;
@@ -189,7 +188,7 @@ namespace FileFormatConverter.Services.Business
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // TODO: add logs
                 throw;

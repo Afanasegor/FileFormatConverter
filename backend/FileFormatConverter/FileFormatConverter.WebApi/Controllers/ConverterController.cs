@@ -74,7 +74,9 @@ namespace FileFormatConverter.WebApi.Controllers
                 fileInByteArray = ms.ToArray();
             }
 
-            var batchId = await _mainService.StartConverting(fileInByteArray, converterType);
+            var fileName = file.FileName;
+
+            var batchId = await _mainService.StartConverting(fileInByteArray, converterType, fileName);
             return Ok(batchId);
         }
 

@@ -10,6 +10,9 @@ namespace FileFormatConverter.Core.Models
         [Column("origin_file_id")]
         public Guid OriginFileId { get; set; }
 
+        [Column("origin_file_name")]
+        public string OriginFileName { get; set; }
+
         [Column("target_file_id")]
         public Guid TargetFileId { get; set; }
 

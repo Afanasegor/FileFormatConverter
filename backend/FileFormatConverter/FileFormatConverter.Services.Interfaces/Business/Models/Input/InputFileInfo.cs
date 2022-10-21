@@ -10,5 +10,6 @@ namespace FileFormatConverter.Services.Interfaces.Business.Models.Input
         public string FileHash { get; set; }
         public FileFormat FileFormat { get; set; }
         public ConverterType ConverterType { get; set; }
+        public string FileName { get; set; }
     }
 }

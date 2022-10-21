@@ -46,6 +46,7 @@ namespace FileFormatConverter.Services.Business
             }
             catch (Exception)
             {
+                // TODO: Add logs
                 await _batchService.ChangeStatus(batchToProcess.Id, ProcessStatus.Error);
             }
         }

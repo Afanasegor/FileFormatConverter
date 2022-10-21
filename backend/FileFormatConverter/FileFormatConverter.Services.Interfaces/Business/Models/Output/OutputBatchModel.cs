@@ -7,6 +7,7 @@ namespace FileFormatConverter.Services.Interfaces.Business.Models.Output
     {
         public Guid Id { get; set; }
         public Guid OriginFileId { get; set; }
+        public string OriginFileName { get; set; }
         public Guid TargetFileId { get; set; }
         public ConverterType ConverterType { get; set; }
         public ProcessStatus ProcessStatus { get; set; }

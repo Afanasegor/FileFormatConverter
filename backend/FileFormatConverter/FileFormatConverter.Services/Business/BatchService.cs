@@ -33,7 +33,8 @@ namespace FileFormatConverter.Services.Business
                 Id = Guid.NewGuid(),
                 ProcessStatus = Core.Models.Enums.ProcessStatus.Created,
                 OriginFileId = originFileInfo.Id,
-                ConverterType = originFileInfo.ConverterType.ConvertToCore()
+                ConverterType = originFileInfo.ConverterType.ConvertToCore(),
+                OriginFileName = originFileInfo.FileName
             };
 
             var result = await _batchRepository.CreateAsync(newBatch);
