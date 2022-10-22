@@ -39,7 +39,10 @@ export default {
           formData.append('file', file, file.name);
       }
       await ConverterRepository.add(formData, HtmlToPdfType)
-      .then((resp) => {console.log(resp)})
+      .then(async (resp) => {
+        console.log(resp);
+        await this.getAllBatches();
+      })
       .catch((err) => console.log(err));
     },
     async getAllBatches() {
