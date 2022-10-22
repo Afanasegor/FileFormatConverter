@@ -1,7 +1,7 @@
 <template>
   <div>
       <div v-if="fileName">
-        {{ this.fileName }}
+        <p style="font-weight: bold; margin-top: 10px;">{{ this.fileName }}</p>
       </div>
       <div class="add-btn-block">
           <add-button class="add-btn-size" v-if="!file" type="file" @onAdd="setFile">Выбрать файл</add-button>
