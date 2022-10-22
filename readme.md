@@ -1,6 +1,6 @@
 Stack
 -----
-* .NET Core 3.1
+* .NET Core 3.1 ([download](https://dotnet.microsoft.com/en-us/download/dotnet/3.1))
 * ASP.NET WebApi
 * EntityFramework (MSSQLServer)
 * Vue.js
