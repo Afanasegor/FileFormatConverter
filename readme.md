@@ -31,5 +31,5 @@ Frontend
 Workflow
 -----
 After starting backend and frontend u can go to main page (default localhost:8080 if running locally)   
-U can see 3 pages. On the second one u can go over HTML-to-PDF screen or click on the navigation bar.   
+U can see 3 pages. On the second one u can go over HTML-to-PDF screen or click on the navigation bar. Here u will see list of all your processes. If process is completed, you can download the result file (PDF).      
 Also in admin page u can clear list of processes and go to different links (swagger | hangfire | git-project).
