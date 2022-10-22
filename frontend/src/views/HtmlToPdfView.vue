@@ -1,6 +1,5 @@
 <template>
   <div >
-    HTML to PDF view
     <base-converter @onConvertStart="convertFileHtmlToPdf" />
     <block-divider class="block-divider" />
     <batch-list :batches="batches" @onDownloadFile="downloadFile"/>
@@ -89,6 +88,7 @@ export default {
     }
   },
   async mounted() {
+    console.log(process.env.TEST_VAR);
     await this.getAllBatches();
     this.makePeriodicRequestToGetAllBatches();
   },

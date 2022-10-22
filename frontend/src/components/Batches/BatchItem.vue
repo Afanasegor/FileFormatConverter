@@ -89,7 +89,8 @@ export default {
 
 .origin-file-name {
     justify-self: flex-start;
-    width: 200px;
+    width: 180px;
     align-self: center;
+    text-align: start;
 }
 </style>

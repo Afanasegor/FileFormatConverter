@@ -9,3 +9,4 @@ packages/
 converted/
 origin-files/
 .local-chromium/
+logs/
